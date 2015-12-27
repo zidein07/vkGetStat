@@ -10,10 +10,13 @@ app.statisticView = Backbone.View.extend({
 
   },
   render: function () {
+    console.log('hiGuys!');
+  },
+  renderData: function (idGroup) {
     var dataForChart = [];
     var self = this;
     this.token = app.token.getToken();
-    this.fetchWallData().then(function (response) {
+    this.fetchWallData(idGroup).then(function (response) {
       response.forEach(function (item) {
         var day = item.date.getDate();
         var month = item.date.getUTCMonth() + 1;
@@ -27,10 +30,10 @@ app.statisticView = Backbone.View.extend({
       self.chart(dataForChart);
     });
   },
-  fetchWallData: function () {
+  fetchWallData: function (id) {
     var dataStat = [];
     var url = app.vk.getWall({
-      owner_id: '-51313495',
+      owner_id: id,
       count: 100,
       offset: 0
     });
@@ -64,7 +67,14 @@ app.statisticView = Backbone.View.extend({
           type: 'category',
           categories: category
         }
+      },
+      subchart: {
+        show: true
       }
     });
+  },
+  getIdGroup: function () {
+    var inputVal = $('#groupOrUserId').val();
+    this.renderData(inputVal);
   }
 });
