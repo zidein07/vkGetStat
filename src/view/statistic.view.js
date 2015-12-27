@@ -27,7 +27,7 @@ app.statisticView = Backbone.View.extend({
         }
         dataForChart[dateStr].push(item);
       });
-      self.chart(dataForChart);
+      self.chart(dataForChart, idGroup);
     });
   },
   fetchWallData: function (id) {
@@ -38,7 +38,7 @@ app.statisticView = Backbone.View.extend({
       offset: 0
     });
     return url.then(function (response) {
-      var dataResponse = response.response.splice(1);
+      var dataResponse = response.response;
       dataResponse.map(function (item) {
         dataStat.push({
           date: new Date(item.date * 1000)
@@ -47,10 +47,10 @@ app.statisticView = Backbone.View.extend({
       return dataStat;
     });
   },
-  chart: function (data) {
+  chart: function (data, idGroupOrUser) {
     console.log('data', data);
     var category = [];
-    var columnData = ['data1'];
+    var columnData = ['id: ' + idGroupOrUser];
     for (var item in data) {
       columnData.push(data[item].length);
       category.push(item);
