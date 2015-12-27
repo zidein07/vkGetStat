@@ -68,8 +68,8 @@ app.statisticView = Backbone.View.extend({
           categories: category
         }
       },
-      subchart: {
-        show: true
+      zoom: {
+        enabled: true
       }
     });
   },
