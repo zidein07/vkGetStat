@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Вконтакте</title>
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/c3/c3.css">
     <link rel="stylesheet" href="src/style/style.css">
 </head>
 <body>
@@ -12,12 +13,12 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
       </span>
         </div>
     </div>
+    <div class="statistic"></div>
 </div>
-<div class="statistic"></div>
 <script src="/vendor/jquery/jquery.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/vendor/underscore/underscore.js"></script>
@@ -26,6 +27,8 @@
 <script src="/vendor/handlebars/handlebars.js"></script>
 <script src="/vendor/magnific-popup/dist/jquery.magnific-popup.js"></script>
 <script src="/vendor/store2/dist/store2.js"></script>
+<script src="/vendor/d3/d3.js"></script>
+<script src="/vendor/c3/c3.js"></script>
 
 <script src="/src/modules/template.js"></script>
 <script src="/src/modules/vk.api.js"></script>
@@ -35,7 +38,8 @@
 <script src="/src/view/statistic.view.js"></script>
 <script src="/src/router/router.js"></script>
 <script src="/src/app.js"></script>
-<script id="stat" type="text/x-handlebars-template"></script>
+<script id="stat" type="text/x-handlebars-template">
 
+</script>
 </body>
 </html>
