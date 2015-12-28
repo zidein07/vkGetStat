@@ -25,7 +25,6 @@ app.getWallData = {
     listPromise.then(function (list) {
       var request = function () {
         if (list.length === 0) {
-          console.log('arrData', arrData);
           deferred.resolve(arrData);
           return false;
         }

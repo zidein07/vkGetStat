@@ -7,19 +7,17 @@ app.statisticView = Backbone.View.extend({
     'click #chartDataGroup': 'getIdGroup'
   },
   initialize: function () {
-    this.defaultLimit = 1;
-    this.offset = 0;
-    this.timeout = 100;
+
   },
   render: function () {
-    console.log('hiGuys!');
+    app.loader.hide();
   },
   renderData: function (idGroup) {
+    app.loader.show();
     var dataForChart = [];
     var self = this;
     this.token = app.token.getToken();
     app.getWallData.getDataFromApi(idGroup).then(function (response) {
-      console.log('obj', response);
       response.forEach(function (item) {
         var day = new Date(item * 1000).getDate();
         var month = new Date(item * 1000).getUTCMonth() + 1;
@@ -31,6 +29,7 @@ app.statisticView = Backbone.View.extend({
         dataForChart[dateStr].push(item);
       });
       self.chart(dataForChart, idGroup);
+      app.loader.hide();
     });
   },
   chart: function (data, idGroupOrUser) {
@@ -60,6 +59,7 @@ app.statisticView = Backbone.View.extend({
     });
   },
   getIdGroup: function () {
+
     var inputVal = $('#groupOrUserId').val();
     this.renderData(inputVal);
   }
