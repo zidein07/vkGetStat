@@ -7,7 +7,9 @@ app.statisticView = Backbone.View.extend({
     'click #chartDataGroup': 'getIdGroup'
   },
   initialize: function () {
-
+    this.defaultLimit = 1;
+    this.offset = 0;
+    this.timeout = 100;
   },
   render: function () {
     console.log('hiGuys!');
@@ -16,11 +18,12 @@ app.statisticView = Backbone.View.extend({
     var dataForChart = [];
     var self = this;
     this.token = app.token.getToken();
-    this.fetchWallData(idGroup).then(function (response) {
+    app.getWallData.getDataFromApi(idGroup).then(function (response) {
+      console.log('obj', response);
       response.forEach(function (item) {
-        var day = item.date.getDate();
-        var month = item.date.getUTCMonth() + 1;
-        var year = item.date.getUTCFullYear();
+        var day = new Date(item * 1000).getDate();
+        var month = new Date(item * 1000).getUTCMonth() + 1;
+        var year = new Date(item * 1000).getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
         if (!dataForChart[dateStr]) {
           dataForChart[dateStr] = [];
@@ -28,23 +31,6 @@ app.statisticView = Backbone.View.extend({
         dataForChart[dateStr].push(item);
       });
       self.chart(dataForChart, idGroup);
-    });
-  },
-  fetchWallData: function (id) {
-    var dataStat = [];
-    var url = app.vk.getWall({
-      owner_id: id,
-      count: 100,
-      offset: 0
-    });
-    return url.then(function (response) {
-      var dataResponse = response.response;
-      dataResponse.map(function (item) {
-        dataStat.push({
-          date: new Date(item.date * 1000)
-        });
-      });
-      return dataStat;
     });
   },
   chart: function (data, idGroupOrUser) {
