@@ -10,6 +10,7 @@ app.statisticView = Backbone.View.extend({
 
   },
   render: function () {
+    $('.container').html(app.tpl.tabs());
     app.loader.hide();
   },
   renderData: function (idGroup) {
