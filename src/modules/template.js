@@ -2,8 +2,14 @@ var app = app || {};
 var Backbone = Backbone || {};
 
 app.tpl = {
-  tabs: function (context) {
-    return this.getTpl(context, '#tabs');
+  index: function (context) {
+    return this.getTpl(context, '#index');
+  },
+  statisticDataWall: function (context) {
+    return this.getTpl(context, '#statisticDataWall');
+  },
+  sortWallVk: function (context) {
+    return this.getTpl(context, '#sortWallVk');
   },
   getTpl: function (context, selector) {
     var source = $(selector).html();

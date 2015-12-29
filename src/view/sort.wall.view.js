@@ -7,6 +7,8 @@ app.wallSort = Backbone.View.extend({
 
   },
   render: function () {
-    console.log('test');
+    var html = app.tpl.sortWallVk();
+    $('.container').html(html);
+    app.loader.hide();
   }
 });

@@ -10,7 +10,8 @@ app.statisticView = Backbone.View.extend({
 
   },
   render: function () {
-    $('.container').html(app.tpl.tabs());
+    var html = app.tpl.statisticDataWall();
+    $('.container').html(html);
     app.loader.hide();
   },
   renderData: function (idGroup) {
@@ -23,9 +24,10 @@ app.statisticView = Backbone.View.extend({
     app.getWallData.getDataFromApi(idGroup).then(function (response) {
       console.log('response[0]', response[0]);
       response.forEach(function (item) {
-        var day = new Date(item.date * 1000).getDate();
-        var month = new Date(item.date * 1000).getUTCMonth() + 1;
-        var year = new Date(item.date * 1000).getUTCFullYear();
+        var date = new Date(item.date * 1000);
+        var day = date.getDate();
+        var month = date.getUTCMonth() + 1;
+        var year = date.getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
         if (!dataForChartWallItem[dateStr] || !dataForChartWallLikes[item.likes.count] || !dataForChartWallRepost[item.reposts.count]) {
           dataForChartWallItem[dateStr] = [];

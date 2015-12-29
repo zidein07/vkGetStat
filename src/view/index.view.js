@@ -7,7 +7,8 @@ app.indexView = Backbone.View.extend({
 
   },
   render: function () {
+    var html = app.tpl.index();
+    $('.container').html(html);
     app.loader.hide();
-    console.log('index');
   }
 });

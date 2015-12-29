@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="src/style/style.css">
 </head>
 <body>
+<div class="col-lg-8 col-lg-offset-2">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
+      </span>
+    </div>
+</div>
 <div class="container">
 
 </div>
@@ -38,15 +46,25 @@
 <script src="/src/view/statistic.view.js"></script>
 <script src="/src/router/router.js"></script>
 <script src="/src/app.js"></script>
-<script id="tabs" type="text/x-handlebars-template">
-    <div class="col-lg-8 col-lg-offset-2">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
-      </span>
+<script id="index" type="text/x-handlebars-template">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-6" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ApiVk</a></div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+                <ul class="nav navbar-nav">
+                    <li><a href="/#/stat">Статистика страниц</a></li>
+                    <li><a href="/#/sort">Сортировка страниц</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+</script>
+<script id="statisticDataWall" type="text/x-handlebars-template">
     <div class="content col-lg-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
@@ -72,6 +90,9 @@
 
     </div>
     <div class="statistic"></div>
+</script>
+<script id="sortWallVk" type="text/x-handlebars-template">
+    Это страница сорта
 </script>
 </body>
 </html>
