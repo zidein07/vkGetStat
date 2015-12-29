@@ -15,10 +15,10 @@ app.wallSortView = Backbone.View.extend({
     app.loader.hide();
   },
   renderData: function () {
-    app.loader.show();
     var self = this;
     var params = this.getParams();
     app.getWallData.getDataFromApi(params.wallId).then(function (responseList) {
+      app.loader.show();
       var sortResponse = self.sortData(responseList, params.sortType);
       console.log('Количество постов: ', sortResponse.length);
       var html = '';
@@ -51,8 +51,9 @@ app.wallSortView = Backbone.View.extend({
         });
       });
       $('.posts').html(html);
+      app.loader.hide();
     });
-    app.loader.hide();
+
   },
   getParams: function () {
     var period = $('#period').val();
