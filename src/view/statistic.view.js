@@ -27,25 +27,25 @@ app.statisticView = Backbone.View.extend({
         var year = new Date(item.date * 1000).getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
         if (!dataForChartWallItem[dateStr]) {
-          dataForChart[dateStr] = [];
+          dataForChartWallItem[dateStr] = [];
         } else {
           dataForChartWallItem[dateStr].push(item.date);
         }
-        if (!dataForChartWallLikes[dateStr]) {
-          dataForChart[dateStr] = [];
+        if (!dataForChartWallLikes[item.likes.count]) {
+          dataForChartWallLikes[item.likes.count] = [];
         } else {
-          dataForChartWallLikes[dateStr].push(item.likes.count);
+          dataForChartWallLikes[item.likes.count].push(item.date);
         }
-        if (!dataForChartWallRepost[dateStr]) {
-          dataForChartWallRepost[dateStr] = [];
+        if (!dataForChartWallRepost[item.reposts.count]) {
+          dataForChartWallRepost[item.reposts.count] = [];
         } else {
-          dataForChartWallRepost[dateStr].push(item.reposts.count);
+          dataForChartWallRepost[item.reposts.count].push(item.date);
         }
       });
       app.chart.drawChart(dataForChartWallItem, idGroup, '#repost .statistic');
       app.chart.drawChart(dataForChartWallLikes, idGroup, '#like .statistic');
       app.chart.drawChart(dataForChartWallRepost, idGroup, '#record .statistic');
-      
+
       app.loader.hide();
     });
   },

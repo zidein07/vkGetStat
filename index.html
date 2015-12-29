@@ -17,7 +17,7 @@
       </span>
         </div>
     </div>
-    <div class="content col-lg-6 col-lg-offset-3">
+    <div class="content col-lg-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#like" data-toggle="tab">Макс лайков</a></li>
@@ -25,7 +25,18 @@
                 <li><a href="#record" data-toggle="tab">Макс записей</a></li>
             </ul>
             <div class="tab-content">
-
+                <div class="tab-pane active" id="like">
+                    <p>Я показываю максимальное кол-во лайков</p>
+                    <div class="statistic"></div>
+                </div>
+                <div class="tab-pane" id="repost">
+                    <p>Я показываю статистику репостов</p>
+                    <div class="statistic"></div>
+                </div>
+                <div class="tab-pane" id="record">
+                    <p>Я показываю максимальное кол-во записей</p>
+                    <div class="statistic"></div>
+                </div>
             </div>
         </div>
 
@@ -51,24 +62,14 @@
 
 
 <script src="/src/modules/loader.js"></script>
+<script src="/src/modules/chart.js"></script>
 <script src="/src/modules/token.js"></script>
 <script src="/src/modules/module.fetch.wall.js"></script>
 <script src="/src/view/statistic.view.js"></script>
 <script src="/src/router/router.js"></script>
 <script src="/src/app.js"></script>
 <script id="tabs" type="text/x-handlebars-template">
-    <div class="tab-pane active" id="like">
-        <p>Я показываю максимальное кол-во лайков</p>
-        <div class="statistic"></div>
-    </div>
-    <div class="tab-pane" id="repost">
-        <p>Я показываю статистику репостов</p>
-        <div class="statistic"></div>
-    </div>
-    <div class="tab-pane" id="record">
-        <p>Я показываю максимальное кол-во записей</p>
-        <div class="statistic"></div>
-    </div>
+
 </script>
 </body>
 </html>
