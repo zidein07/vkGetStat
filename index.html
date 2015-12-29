@@ -135,18 +135,19 @@
         {{#if photoStatus}}
         <img src="{{imgSrc}}" class="imgPostItem col-xs-4" alt="">
         {{/if}}
-        <p class="textPostItem">{{text}}
-        <div class="postCount col-xs-12"></div>
-        <h4 class='col-xs-4'>Кол-во лайков:
-            <small>{{likes}}</small>
-        </h4>
-        <h4 class='col-xs-4'>Кол-во Реповстов:
-            <small>{{reports}}</small>
-        </h4>
-        <h4 class='col-xs-4'>Кол-во Комментарий:
-            <small>{{comments}}</small>
-        </h4>
-        </p>
+        <p class="textPostItem">{{text}}</p>
+        <h4 class="col-xs-12 row">Дата: <small>{{date}}</small></h4 class="col-xs-12">
+        <div class="postCount col-xs-12">
+            <h4 class='col-xs-4'>Кол-во лайков:
+                <small>{{likes}}</small>
+            </h4>
+            <h4 class='col-xs-4'>Кол-во Реповстов:
+                <small>{{reports}}</small>
+            </h4>
+            <h4 class='col-xs-4'>Кол-во Комментарий:
+                <small>{{comments}}</small>
+            </h4>
+        </div>
     </div>
 </script>
 </body>

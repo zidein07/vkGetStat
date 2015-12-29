@@ -10,12 +10,12 @@ app.wallSortView = Backbone.View.extend({
 
   },
   render: function () {
-    app.loader.show();
     var html = app.tpl.sortWallVk();
     $('.content').html(html);
     app.loader.hide();
   },
   renderData: function () {
+    app.loader.show();
     var self = this;
     var params = this.getParams();
     app.getWallData.getDataFromApi(params.wallId).then(function (responseList) {
@@ -29,6 +29,11 @@ app.wallSortView = Backbone.View.extend({
         var text = item.text;
         var photoImg = '';
         var photoStatus = false;
+        var date = new Date(item.date * 1000);
+        var day = date.getDate();
+        var month = date.getUTCMonth() + 1;
+        var year = date.getUTCFullYear();
+        var dateStr = day + '.' + month + '.' + year;
         if (!_.isUndefined(item.attachment)) {
           if (!_.isUndefined(item.attachment.photo)) {
             photoStatus = true;
@@ -41,11 +46,13 @@ app.wallSortView = Backbone.View.extend({
           comments: comments,
           text: text,
           imgSrc: photoImg,
-          photoStatus: photoStatus
+          photoStatus: photoStatus,
+          date: dateStr
         });
       });
       $('.posts').html(html);
     });
+    app.loader.hide();
   },
   getParams: function () {
     var period = $('#period').val();
