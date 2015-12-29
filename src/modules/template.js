@@ -14,6 +14,9 @@ app.tpl = {
   menuTpl: function (context) {
     return this.getTpl(context, '#menuTpl');
   },
+  tplForPost: function (context) {
+    return this.getTpl(context, '#tplForPost');
+  },
   getTpl: function (context, selector) {
     var source = $(selector).html();
     var template = Handlebars.compile(source);

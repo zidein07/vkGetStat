@@ -18,14 +18,33 @@ app.wallSortView = Backbone.View.extend({
   renderData: function () {
     var self = this;
     var params = this.getParams();
-    var wallDataArray = [];
-    app.getWallData.getDataFromApi(params.wallId).then(function (response) {
-      var sortResponse = [];
-      response.forEach(function (item) {
-        wallDataArray.push(item);
+    app.getWallData.getDataFromApi(params.wallId).then(function (responseList) {
+      var sortResponse = self.sortData(responseList, params.sortType);
+      console.log('Количество постов: ', sortResponse.length);
+      var html = '';
+      sortResponse.map(function (item) {
+        var likeCount = item.likes.count;
+        var reports = item.reposts.count;
+        var comments = item.comments.count;
+        var text = item.text;
+        var photoImg = '';
+        var photoStatus = false;
+        if (!_.isUndefined(item.attachment)) {
+          if (!_.isUndefined(item.attachment.photo)) {
+            photoStatus = true;
+            photoImg = item.attachment.photo.src_big;
+          }
+        }
+        html += app.tpl.tplForPost({
+          likes: likeCount,
+          reports: reports,
+          comments: comments,
+          text: text,
+          imgSrc: photoImg,
+          photoStatus: photoStatus
+        });
       });
-      sortResponse = self.sortData(wallDataArray, params.sortType);
-      console.log('sortResponse', sortResponse);
+      $('.posts').html(html);
     });
   },
   getParams: function () {
@@ -38,29 +57,9 @@ app.wallSortView = Backbone.View.extend({
       wallId: getIdWall
     };
   },
-  dataPost: function (like, repost, comment) {
-    return {
-      like: like,
-      repost: repost,
-      comment: comment
-    };
-  },
-  sortData: function (arrItem, select) {
-    if (select === 'like') {
-      return arrItem.sort(function (a, b) {
-        return a.likes.count > b.likes.count;
-      });
-    } else if (select === 'repost') {
-      return arrItem.sort(function (a, b) {
-        return a.reposts.count > b.reposts.count;
-      });
-    } else if (select === 'comments') {
-      return arrItem.sort(function (a, b) {
-        return a.comments.count > b.comments.count;
-      });
-    }
-  },
-  chooseData: function (paramsSelect) {
-
+  sortData: function (arrItem, sortType) {
+    return _.sortBy(arrItem, function (item) {
+      return -item[sortType].count;
+    });
   }
 });

@@ -120,13 +120,33 @@
         </div>
         <div class="col-lg-3">
             <select name="sortType" id="sortType" class="selectpicker form-control">
-                <option value="like">like</option>
-                <option value="repost">repost</option>
+                <option value="likes">likes</option>
+                <option value="reposts">reposts</option>
                 <option value="comments">comments</option>
             </select>
         </div>
     </div>
-</script>
+    <div class="posts">
 
+    </div>
+</script>
+<script id="tplForPost" type="text/x-handlebars-template">
+    <div class="col-xs-12 postItem">
+        {{#if photoStatus}}
+            <img src="{{imgSrc}}" alt="">
+        {{/if}}
+        <p>{{text}}</p>
+        <h4 class='col-xs-4'>Кол-во лайков:
+            <small>{{likes}}</small>
+        </h4>
+        <h4 class='col-xs-4'>Кол-во Реповстов:
+            <small>{{reports}}</small>
+        </h4>
+        <h4 class='col-xs-4'>Кол-во Комментарий:
+            <small>{{comments}}</small>
+        </h4>
+    </div>
+    <br>
+</script>
 </body>
 </html>
