@@ -26,25 +26,18 @@ app.statisticView = Backbone.View.extend({
         var month = new Date(item.date * 1000).getUTCMonth() + 1;
         var year = new Date(item.date * 1000).getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
-        if (!dataForChartWallItem[dateStr]) {
+        if (!dataForChartWallItem[dateStr] || !dataForChartWallLikes[item.likes.count] || !dataForChartWallRepost[item.reposts.count]) {
           dataForChartWallItem[dateStr] = [];
-        } else {
-          dataForChartWallItem[dateStr].push(item.date);
-        }
-        if (!dataForChartWallLikes[item.likes.count]) {
           dataForChartWallLikes[item.likes.count] = [];
-        } else {
-          dataForChartWallLikes[item.likes.count].push(item.date);
-        }
-        if (!dataForChartWallRepost[item.reposts.count]) {
           dataForChartWallRepost[item.reposts.count] = [];
-        } else {
-          dataForChartWallRepost[item.reposts.count].push(item.date);
         }
+        dataForChartWallItem[dateStr].push(item.date);
+        dataForChartWallLikes[item.likes.count].push(dateStr);
+        dataForChartWallRepost[item.reposts.count].push(dateStr);
       });
-      app.chart.drawChart(dataForChartWallItem, idGroup, '#repost .statistic');
-      app.chart.drawChart(dataForChartWallLikes, idGroup, '#like .statistic');
-      app.chart.drawChart(dataForChartWallRepost, idGroup, '#record .statistic');
+      app.chart.drawChartRecord(dataForChartWallItem, idGroup);
+      app.chart.drawChartLike(dataForChartWallLikes, idGroup, dataForChartWallItem);
+      app.chart.drawChartRepost(dataForChartWallRepost, idGroup, dataForChartWallItem);
 
       app.loader.hide();
     });
