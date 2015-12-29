@@ -20,11 +20,12 @@ app.wallSortView = Backbone.View.extend({
     var params = this.getParams();
     var wallDataArray = [];
     app.getWallData.getDataFromApi(params.wallId).then(function (response) {
+      var sortResponse = [];
       response.forEach(function (item) {
-        var postData = self.dataPost(item.likes.count, item.reposts.count, item.comments.count);
-        wallDataArray.push(postData);
+        wallDataArray.push(item);
       });
-      console.log('self.sortData(wallDataArray)', wallDataArray);
+      sortResponse = self.sortData(wallDataArray, params.sortType);
+      console.log('sortResponse', sortResponse);
     });
   },
   getParams: function () {
@@ -44,19 +45,22 @@ app.wallSortView = Backbone.View.extend({
       comment: comment
     };
   },
-  sortData: function (arrItem) {
-    return arrItem.sort(function (a, b) {
-      return a - b;
-    });
-  },
-  chooseData: function (paramsSelect, arrDataPost) {
-    var wallDataArray = [];
-    if (params.sortType === 'like') {
-      wallDataArray.push(arrDataPost.like);
-    } else if (params.sortType === 'repost') {
-      wallDataArray.push(arrDataPost.repost);
-    } else {
-      wallDataArray.push(arrDataPost.comment);
+  sortData: function (arrItem, select) {
+    if (select === 'like') {
+      return arrItem.sort(function (a, b) {
+        return a.likes.count > b.likes.count;
+      });
+    } else if (select === 'repost') {
+      return arrItem.sort(function (a, b) {
+        return a.reposts.count > b.reposts.count;
+      });
+    } else if (select === 'comments') {
+      return arrItem.sort(function (a, b) {
+        return a.comments.count > b.comments.count;
+      });
     }
+  },
+  chooseData: function (paramsSelect) {
+
   }
 });
