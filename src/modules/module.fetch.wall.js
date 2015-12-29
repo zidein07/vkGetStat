@@ -43,7 +43,7 @@ app.getWallData = {
           });
           setTimeout(function () {
             request();
-          }, 1000);
+          }, 100);
         });
       };
       request();

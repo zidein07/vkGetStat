@@ -10,6 +10,7 @@ app.statisticView = Backbone.View.extend({
 
   },
   render: function () {
+    app.loader.show();
     var html = app.tpl.statisticDataWall();
     $('.content').html(html);
     app.loader.hide();
