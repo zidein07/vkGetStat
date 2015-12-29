@@ -18,14 +18,13 @@ app.wallSortView = Backbone.View.extend({
   renderData: function () {
     var self = this;
     var params = this.getParams();
+    var wallDataArray = [];
     app.getWallData.getDataFromApi(params.wallId).then(function (response) {
       response.forEach(function (item) {
         var postData = self.dataPost(item.likes.count, item.reposts.count, item.comments.count);
-        if (params.sortType === 'like') {
-
-          console.log('postData.like', postData.like);
-        }
+        wallDataArray.push(postData);
       });
+      console.log('self.sortData(wallDataArray)', wallDataArray);
     });
   },
   getParams: function () {
@@ -44,5 +43,20 @@ app.wallSortView = Backbone.View.extend({
       repost: repost,
       comment: comment
     };
+  },
+  sortData: function (arrItem) {
+    return arrItem.sort(function (a, b) {
+      return a - b;
+    });
+  },
+  chooseData: function (paramsSelect, arrDataPost) {
+    var wallDataArray = [];
+    if (params.sortType === 'like') {
+      wallDataArray.push(arrDataPost.like);
+    } else if (params.sortType === 'repost') {
+      wallDataArray.push(arrDataPost.repost);
+    } else {
+      wallDataArray.push(arrDataPost.comment);
+    }
   }
 });
