@@ -9,13 +9,26 @@
 </head>
 <body>
 <div class="container">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
       </span>
         </div>
+    </div>
+    <div class="content col-lg-6 col-lg-offset-3">
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#like" data-toggle="tab">Макс лайков</a></li>
+                <li><a href="#repost" data-toggle="tab">Макс репостов</a></li>
+                <li><a href="#record" data-toggle="tab">Макс записей</a></li>
+            </ul>
+            <div class="tab-content">
+
+            </div>
+        </div>
+
     </div>
     <div class="statistic"></div>
 </div>
@@ -43,8 +56,19 @@
 <script src="/src/view/statistic.view.js"></script>
 <script src="/src/router/router.js"></script>
 <script src="/src/app.js"></script>
-<script id="stat" type="text/x-handlebars-template">
-
+<script id="tabs" type="text/x-handlebars-template">
+    <div class="tab-pane active" id="like">
+        <p>Я показываю максимальное кол-во лайков</p>
+        <div class="statistic"></div>
+    </div>
+    <div class="tab-pane" id="repost">
+        <p>Я показываю статистику репостов</p>
+        <div class="statistic"></div>
+    </div>
+    <div class="tab-pane" id="record">
+        <p>Я показываю максимальное кол-во записей</p>
+        <div class="statistic"></div>
+    </div>
 </script>
 </body>
 </html>

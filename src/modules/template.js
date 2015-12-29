@@ -2,8 +2,8 @@ var app = app || {};
 var Backbone = Backbone || {};
 
 app.tpl = {
-  stat: function (context) {
-    return this.getTpl(context, '#stat');
+  tabs: function (context) {
+    return this.getTpl(context, '#tabs');
   },
   getTpl: function (context, selector) {
     var source = $(selector).html();

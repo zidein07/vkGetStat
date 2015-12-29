@@ -36,7 +36,7 @@ app.getWallData = {
           var result = Array.prototype.slice.call(arguments);
           result[0].response.map(function (item) {
             if (item.date) {
-              arrData.push(item.date);
+              arrData.push(item);
             } else {
               return false
             }
