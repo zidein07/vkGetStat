@@ -11,6 +11,9 @@ app.tpl = {
   sortWallVk: function (context) {
     return this.getTpl(context, '#sortWallVk');
   },
+  menuTpl: function (context) {
+    return this.getTpl(context, '#menuTpl');
+  },
   getTpl: function (context, selector) {
     var source = $(selector).html();
     var template = Handlebars.compile(source);

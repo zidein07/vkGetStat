@@ -4,8 +4,9 @@ var Backbone = Backbone || {};
 app.Router = Backbone.Router.extend({
   initialize: function () {
     this.statisticView = new app.statisticView();
-    this.wallSort = new app.wallSort();
+    this.wallSortView = new app.wallSortView();
     this.indexView = new app.indexView();
+    this.menuView = new app.menuView();
   },
   routes: {
     '': 'index',
@@ -13,12 +14,16 @@ app.Router = Backbone.Router.extend({
     'stat': 'wallStatistic'
   },
   index: function () {
+    this.menuView.render();
     this.indexView.render();
   },
   wallSort: function () {
-    this.wallSort.render();
+    this.menuView.render();
+    this.wallSortView.render();
+
   },
   wallStatistic: function () {
+    this.menuView.render();
     this.statisticView.render();
   }
 });

@@ -1,14 +1,14 @@
 var app = app || {};
 var Backbone = Backbone || {};
 
-app.wallSort = Backbone.View.extend({
+app.wallSortView = Backbone.View.extend({
   el: '.container',
   initialize: function () {
 
   },
   render: function () {
     var html = app.tpl.sortWallVk();
-    $('.container').html(html);
+    $('.content').html(html);
     app.loader.hide();
   }
 });

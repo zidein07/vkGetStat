@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <title>Вконтакте</title>
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.css">
     <link rel="stylesheet" href="vendor/c3/c3.css">
     <link rel="stylesheet" href="src/style/style.css">
 </head>
 <body>
-<div class="col-lg-8 col-lg-offset-2">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
-      </span>
-    </div>
-</div>
 <div class="container">
+    <div class="nav-wrapper">
 
+    </div>
+    <div class="content">
+
+    </div>
 </div>
 <div id="loadingWrapper">
     <div class="loader">Loading...</div>
@@ -32,6 +30,7 @@
 <script src="/vendor/store2/dist/store2.js"></script>
 <script src="/vendor/d3/d3.js"></script>
 <script src="/vendor/c3/c3.js"></script>
+<script src="/vendor/bootstrap-select/dist/js/bootstrap-select.js"></script>
 
 <script src="/src/modules/template.js"></script>
 <script src="/src/modules/vk.api.js"></script>
@@ -41,13 +40,14 @@
 <script src="/src/modules/chart.js"></script>
 <script src="/src/modules/token.js"></script>
 <script src="/src/modules/module.fetch.wall.js"></script>
+<script src="/src/view/common/menu.view.js"></script>
 <script src="/src/view/index.view.js"></script>
 <script src="/src/view/sort.wall.view.js"></script>
 <script src="/src/view/statistic.view.js"></script>
 <script src="/src/router/router.js"></script>
 <script src="/src/app.js"></script>
-<script id="index" type="text/x-handlebars-template">
-    <nav class="navbar navbar-default navbar-fixed-top">
+<script id="menuTpl" type="text/x-handlebars-template">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -64,27 +64,36 @@
         </div>
     </nav>
 </script>
+<script id="index" type="text/x-handlebars-template">
+
+</script>
 <script id="statisticDataWall" type="text/x-handlebars-template">
-    <div class="content col-lg-12">
-        <div class="tabbable">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#like" data-toggle="tab">Макс лайков</a></li>
-                <li><a href="#repost" data-toggle="tab">Макс репостов</a></li>
-                <li><a href="#record" data-toggle="tab">Макс записей</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="like">
-                    <p>Я показываю максимальное кол-во лайков</p>
-                    <div class="statistic"></div>
-                </div>
-                <div class="tab-pane" id="repost">
-                    <p>Я показываю статистику репостов</p>
-                    <div class="statistic"></div>
-                </div>
-                <div class="tab-pane" id="record">
-                    <p>Я показываю максимальное кол-во записей</p>
-                    <div class="statistic"></div>
-                </div>
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
+      </span>
+        </div>
+    </div>
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#like" data-toggle="tab">Макс лайков</a></li>
+            <li><a href="#repost" data-toggle="tab">Макс репостов</a></li>
+            <li><a href="#record" data-toggle="tab">Макс записей</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="like">
+                <p>Я показываю максимальное кол-во лайков</p>
+                <div class="statistic"></div>
+            </div>
+            <div class="tab-pane" id="repost">
+                <p>Я показываю статистику репостов</p>
+                <div class="statistic"></div>
+            </div>
+            <div class="tab-pane" id="record">
+                <p>Я показываю максимальное кол-во записей</p>
+                <div class="statistic"></div>
             </div>
         </div>
 
@@ -92,7 +101,34 @@
     <div class="statistic"></div>
 </script>
 <script id="sortWallVk" type="text/x-handlebars-template">
-    Это страница сорта
+    <div class="row">
+        <div class="col-lg-3">
+            <select name="period" id="period" class="selectpicker form-control">
+                <option value="week">week</option>
+                <option value="month">month</option>
+                <option value="three_months">three_months</option>
+                <option value="six_months">six_months</option>
+                <option value="year">year</option>
+                <option value="all_time">all_time</option>
+            </select></div>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="groupOrUserId" id="groupOrUserId">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="chartDataGroup">Go!</button>
+      </span>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <select name="sortType" id="sortType" class="selectpicker form-control">
+                <option value="like">like</option>
+                <option value="repost">repost</option>
+                <option value="comments">comments</option>
+            </select></div>
+
+
+    </div>
+
 </script>
 </body>
 </html>

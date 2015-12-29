@@ -1,12 +1,14 @@
 var app = app || {};
 var Backbone = Backbone || {};
 
-app.indexView = Backbone.View.extend({
+app.menuView = Backbone.View.extend({
   el: '.container',
   initialize: function () {
 
   },
   render: function () {
-
+    var html = app.tpl.menuTpl();
+    $('.nav-wrapper').html(html);
+    app.loader.hide();
   }
 });

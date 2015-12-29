@@ -11,7 +11,7 @@ app.statisticView = Backbone.View.extend({
   },
   render: function () {
     var html = app.tpl.statisticDataWall();
-    $('.container').html(html);
+    $('.content').html(html);
     app.loader.hide();
   },
   renderData: function (idGroup) {
