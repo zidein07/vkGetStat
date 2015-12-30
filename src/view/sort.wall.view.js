@@ -34,7 +34,8 @@ app.wallSortView = Backbone.View.extend({
         var month = date.getUTCMonth() + 1;
         var year = date.getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
-        var urlPost = item;
+        var urlPost = 'http://vk.com/id' + item.from_id + '?w=wall' + item.from_id + '_' + item.id;
+  
         if (!_.isUndefined(item.attachment)) {
           if (!_.isUndefined(item.attachment.photo)) {
             photoStatus = true;
@@ -48,7 +49,8 @@ app.wallSortView = Backbone.View.extend({
           text: text,
           imgSrc: photoImg,
           photoStatus: photoStatus,
-          date: dateStr
+          date: dateStr,
+          urlPost: urlPost
         });
       });
       $('.posts').html(html);
