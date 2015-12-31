@@ -35,7 +35,7 @@ app.wallSortView = Backbone.View.extend({
         var year = date.getUTCFullYear();
         var dateStr = day + '.' + month + '.' + year;
         var urlPost = 'http://vk.com/id' + item.from_id + '?w=wall' + item.from_id + '_' + item.id;
-  
+
         if (!_.isUndefined(item.attachment)) {
           if (!_.isUndefined(item.attachment.photo)) {
             photoStatus = true;

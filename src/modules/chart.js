@@ -65,7 +65,7 @@ app.chart = {
     });
   },
   drawChartRepost: function (data, idGroupOrUser) {
-    console.log('Repost: ', data);
+    console.log('Reposts: ', data);
     var category = [];
     var columnData = ['id: ' + idGroupOrUser];
     for (var item in data) {
